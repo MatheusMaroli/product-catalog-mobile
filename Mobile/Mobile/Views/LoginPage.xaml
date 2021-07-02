@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BaseView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"             
+             xmlns:app="clr-namespace:Mobile.Views"
+              xmlns:layout="clr-namespace:Mobile.Layout"
+             x:Class="Mobile.Views.LoginPage"
+             Shell.NavBarIsVisible="False">
+
+    <app:BaseView.Body>
+        <layout:Card ColorCard="bDefault"  Margin="4,50,4,50">
+            <StackLayout VerticalOptions="Center">
+                <Entry Text="{Binding Email}" Placeholder="Informe o seu email" Keyboard="Email" ></Entry>
+                <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Informe sua senha"></Entry>
+                <layout:Button ColorButton="bPrimary" Size="bSm" VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+            </StackLayout>
+
+        </layout:Card>
+      
+    </app:BaseView.Body>
+</app:BaseView>

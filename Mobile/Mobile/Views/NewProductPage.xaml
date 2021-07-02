@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BaseView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:Mobile.Views"
+             xmlns:layout="clr-namespace:Mobile.Layout"
+             x:Class="Mobile.Views.NewProductPage"
+             x:Name="NewProductPageName"
+             AppearingCommand="{Binding AppearingCommand}">
+    <app:BaseView.Body>
+        <ScrollView>
+
+            <StackLayout Padding="5,1,5,1">
+
+                <layout:Card ColorCard="bDefault" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Entry Text="{Binding Name}" Placeholder="Informe o nome do produto"></Entry>
+                        <Entry Text="{Binding Description}" Placeholder="Informe uma descrição para o produto"></Entry>
+                        <Entry Text="{Binding Price}" Placeholder="R$ 199.00"></Entry>
+                    </StackLayout>
+                </layout:Card>
+
+                <layout:Card ColorCard="bDefault" VerticalOptions="FillAndExpand">
+                    <StackLayout HeightRequest="200" >
+                        <Picker Title="Selecione uma Tag..." 
+                                ItemDisplayBinding="{Binding Value}"
+                                ItemsSource="{Binding Tags}" 
+                                SelectedItem="{Binding SelectedTag}">
+                        </Picker>
+
+                        <ListView ItemsSource="{Binding ProductTags}" RowHeight="55" SeparatorColor="Transparent" >
+                            <ListView.ItemTemplate >
+                                <DataTemplate>
+                                    <ViewCell >
+                                        <layout:Card ColorCard="bDefault" Margin="5,1,5,1">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                </Grid.RowDefinitions >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions >
+
+                                                <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0" VerticalOptions="CenterAndExpand">
+                                                    <Label  FontSize="{Static layout:FontSize.Medium}" TextColor="{Static layout:Colors.ColorText}" Text="{Binding Name}" Margin="0" Padding="0"></Label>
+                                                </StackLayout>
+                                                <StackLayout Grid.Row="0" Grid.Column="1"  Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="End">
+                                                    <layout:Button Size="bSm" 
+                                                            WidthRequest="50" 
+                                                           Icon="trash.png"  
+                                                           ColorButton="bDanger"
+                                                           Command="{Binding BindingContext.DeleteProductTagCommand, Source={x:Reference Name=NewProductPageName}}"
+                                                           CommandParameter="{Binding Id}"/>
+                                                </StackLayout>
+                                            </Grid>
+                                        </layout:Card>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </layout:Card>
+
+                <layout:Card ColorCard="bDefault" VerticalOptions="FillAndExpand" >
+                    <StackLayout >
+                        <layout:Button ColorButton="bPrimary" Text="Foto do produto" Size="bSm" Command="{Binding TakePhotoCommand}"></layout:Button>
+
+                        <Image Source="{Binding ProductImage}"></Image>
+                    </StackLayout>
+                </layout:Card>
+                <layout:Button VerticalOptions="End" ColorButton="bSuccess" Text="Salvar Alterações" Size="bSm" Command="{Binding SaveProductCommand}"></layout:Button>
+                <layout:Button VerticalOptions="End" ColorButton="bDanger" Text="Criar 1000" Size="bSm" Command="{Binding Create1000ProductCommand}"></layout:Button>
+            </StackLayout>
+        </ScrollView>
+    </app:BaseView.Body>
+</app:BaseView>

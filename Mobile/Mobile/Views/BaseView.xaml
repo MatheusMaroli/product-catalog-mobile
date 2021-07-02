@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:layout="clr-namespace:Mobile.Layout"
+             x:Class="Mobile.Views.BaseView"             
+             Title="{Binding Title}">
+
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ContentView BackgroundColor="{Static layout:Colors.ColorBackground}" x:Name="BodyContent" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                
+            </ContentView>
+
+            <StackLayout IsVisible="{Binding IsBusy}" BackgroundColor="{Static layout:Colors.ColorModalBackgroud}" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <layout:Card ColorCard="bDefault" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand">
+                    <StackLayout>
+                        <ActivityIndicator Color="{Static layout:Colors.ColorPrimary}" HeightRequest="60" IsRunning="True"></ActivityIndicator>
+                        <Label FontSize="14" TextColor="{Static layout:Colors.ColorPrimary}" Text="Aguarde..." ></Label>
+                    </StackLayout>
+                </layout:Card>
+            </StackLayout>
+            
+            <StackLayout IsVisible="{Binding IsNotificationVisible}" BackgroundColor="{Static layout:Colors.ColorModalBackgroud}" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <layout:Card ColorCard="bDefault" VerticalOptions="CenterAndExpand"  HorizontalOptions="FillAndExpand" Margin="5,0,5,0">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="0,10,0,10">
+                            <Image Source="{Binding ImageNotification}" HeightRequest="60"></Image>
+                            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" FontSize="{Static layout:FontSize.Medium}" TextColor="{Static layout:Colors.ColorText}" Text="{Binding MessageNotification}"></Label>
+                        </StackLayout>
+                        <layout:LineSeparator/>
+                        <layout:Button Size="bSm" ColorButton="bPrimary" Text="Ok" HorizontalOptions="End" Command="{Binding NotificationCloseCommand}"></layout:Button>
+                    </StackLayout> 
+                </layout:Card>
+            </StackLayout>
+            
+            <StackLayout IsVisible="{Binding IsConfirmationVisible}" BackgroundColor="{Static layout:Colors.ColorModalBackgroud}" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <layout:Card ColorCard="bDefault" VerticalOptions="CenterAndExpand"  HorizontalOptions="FillAndExpand" Margin="5,0,5,0">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="0,10,0,10">
+                            <Image Source="waring.png" HeightRequest="60"></Image>
+                            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" FontSize="{Static layout:FontSize.Medium}" TextColor="{Static layout:Colors.ColorText}" Text="{Binding MessageConfirmation}"></Label>
+                        </StackLayout>
+                        <layout:LineSeparator/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" >
+                            <layout:Button Size="bSm" ColorButton="bPrimary" Text="Confirmar" HorizontalOptions="End" Command="{Binding ConfirmOperationCommand}"></layout:Button>
+                            <layout:Button Size="bSm" ColorButton="bDanger" Text="Cancelar" HorizontalOptions="End" Command="{Binding CancelOperationCommand}"></layout:Button>
+                        </StackLayout>
+                    </StackLayout>
+                </layout:Card>
+            </StackLayout>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BaseView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.PresentationMode="Animated"           
+             xmlns:layout="clr-namespace:Mobile.Layout"
+             xmlns:app="clr-namespace:Mobile.Views"
+             x:Class="Mobile.Views.CatalogProductPage"
+              x:Name="CatalogProductPageName"
+             AppearingCommand="{Binding AppearingCommand}}">
+    <app:BaseView.Body>
+        <ListView ItemsSource="{Binding ProductCatalog}" RowHeight="80" SeparatorColor="Transparent" >
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <ViewCell >
+                        <layout:Card ColorCard="bDefault" Margin="5,2,5,2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions >
+
+                                <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0" VerticalOptions="CenterAndExpand">
+                                    <Label  FontSize="{Static layout:FontSize.Large}" TextColor="{Static layout:Colors.ColorText}" Text="{Binding Name}" Margin="0" Padding="0"></Label>
+                                    <Label  FontSize="{Static layout:FontSize.Small}" 
+                                            TextColor="{Static layout:Colors.ColorText}"
+                                            Text="{Binding Price}" Margin="0" Padding="0"></Label>
+
+                                </StackLayout>
+                                <StackLayout Grid.Row="0" Grid.Column="1"  Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="End">
+
+                                    <layout:Button Size="bSm" Icon="detail.png"
+                                                   WidthRequest="50"
+                                       Command="{Binding BindingContext.GoToDetailProductCommand, 
+                                        Source={x:Reference Name=CatalogProductPageName}}"
+                                       CommandParameter="{Binding Id}"/>
+
+                                    <layout:Button Size="bSm" Icon="cart.png"
+                                                   
+                                                   WidthRequest="50"
+                                       Command="{Binding BindingContext.ShoppingCartCommand, Source={x:Reference Name=CatalogProductPageName}}"
+                                       CommandParameter="{Binding Id}"/>
+                                </StackLayout>
+                            </Grid>
+                        </layout:Card>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </app:BaseView.Body>
+</app:BaseView>

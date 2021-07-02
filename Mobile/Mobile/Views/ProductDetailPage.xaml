@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BaseView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:Mobile.Views"
+             xmlns:layout="clr-namespace:Mobile.Layout"
+             x:Class="Mobile.Views.ProductDetailPage"
+             AppearingCommand="{Binding AppearingCommand}"  >
+    <app:BaseView.Body>
+        <StackLayout Margin="5,1,5,1">
+            <layout:Card ColorCard="bDefault" VerticalOptions="FillAndExpand" >
+                <StackLayout>
+                    <Label FontSize="{Static layout:FontSize.Large}" FontAttributes="Bold" TextColor="{Static layout:Colors.ColorPrimary}" Text="{Binding Name}"></Label>
+                    <Label FontSize="{Static layout:FontSize.Medium}" Text="{Binding Description}"></Label>
+                    <Label FontSize="{Static layout:FontSize.Medium}" FontAttributes="Bold" Text="{Binding Price}"></Label>
+                </StackLayout>
+            </layout:Card>
+            <layout:Card ColorCard="bDefault" VerticalOptions="FillAndExpand">
+                <ListView ItemsSource="{Binding Tags}" RowHeight="40" SeparatorColor="Transparent" >
+                    <ListView.ItemTemplate >
+                        <DataTemplate>
+                            <ViewCell >
+                                <layout:Card ColorCard="bDefault" Margin="5,1,5,1">
+                                    <StackLayout 
+                                            VerticalOptions="CenterAndExpand">
+                                        <Label  
+                                                FontSize="{Static layout:FontSize.Medium}" 
+                                                TextColor="{Static layout:Colors.ColorText}" 
+                                                Text="{Binding Name}" 
+                                                Margin="0" 
+                                                Padding="0"></Label>
+                                    </StackLayout>
+                                </layout:Card>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </layout:Card>
+            <layout:Card ColorCard="bDefault" HeightRequest="300" VerticalOptions="FillAndExpand">
+                <Image Source="{Binding Img}"></Image>
+            </layout:Card>
+        </StackLayout>
+
+    </app:BaseView.Body>
+</app:BaseView>
